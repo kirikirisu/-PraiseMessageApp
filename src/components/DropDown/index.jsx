@@ -12,7 +12,8 @@ const DropDownMenu = () => {
     alert(val);
   };
 
-  const listItem = [1, 2, 3, 4];
+  const listItem = JSON.parse(localStorage.getItem("users"));
+  // console.log(listItem);
 
   return (
     <div style={styles.dropDownMenu}>
@@ -21,9 +22,9 @@ const DropDownMenu = () => {
       </div>
       {listOpen && (
         <div style={styles.menuBox}>
-          {listItem.map((key) => (
-            <div onClick={() => handleClickMenu(key)} key={key}>
-              {`menu${key}`}
+          {listItem.map((user) => (
+            <div onClick={() => handleClickMenu(user.id)} key={user.id}>
+              {`${user.name}`}
             </div>
           ))}
         </div>

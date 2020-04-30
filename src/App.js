@@ -4,15 +4,15 @@ import initialUsers from "./utils/initialUsers";
 
 const App = () => {
   console.log("app start!");
-  const setInitialUsers = () => {
-    const prevUsers = JSON.parse(localStorage.getItem("users"));
-    // console.log(prevUsers, initialUsers);
 
-    if (prevUsers === null) {
+  const setInitialUsers = () => {
+    // https://teratail.com/questions/74962
+    const prevUsers = localStorage.getItem("users");
+    console.log(prevUsers, initialUsers);
+
+    if (!prevUsers) {
       localStorage.setItem("users", JSON.stringify(initialUsers));
     }
-
-    localStorage.setItem("users", JSON.stringify(prevUsers));
   };
 
   useEffect(() => {
