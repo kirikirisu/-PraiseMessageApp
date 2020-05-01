@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import Header from "./components/Header";
+import initialUsers from "./utils/initialUsers";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  console.log("app start!");
+
+  const [currentUser, setCurrentUser] = useState({});
+
+  const setInitialUsers = () => {
+    // https://teratail.com/questions/74962
+    const prevUsers = localStorage.getItem("users");
+    // console.log(prevUsers, initialUsers);
+
+    if (!prevUsers) {
+      localStorage.setItem("users", JSON.stringify(initialUsers));
+    }
+  };
+
+  useEffect(() => {
+    setInitialUsers();
+    setCurrentUser(initialUsers[0]);
+  }, []);
+
+  return <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />;
+};
 
 export default App;
