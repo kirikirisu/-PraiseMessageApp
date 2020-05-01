@@ -1,0 +1,14 @@
+.headerContainer {
+  background-color: cornsilk;
+  padding: 5px;
+  height: 25vh;
+  position: relative;
+}
+
+
+.iconDropdown{
+  float: left;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+}
