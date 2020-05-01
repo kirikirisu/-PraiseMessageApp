@@ -1,0 +1,4 @@
+.pointsContainer {
+  display: flex;
+  justify-content: space-evenly;
+}

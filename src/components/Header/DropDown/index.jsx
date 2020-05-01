@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const DropDownMenu = () => {
+const DropDownMenu = ({ currentUser, setCurrentUser }) => {
   const [listOpen, setListOpen] = useState(false);
 
   const toggleList = () => {
@@ -9,7 +9,7 @@ const DropDownMenu = () => {
 
   const handleClickMenu = (val) => {
     setListOpen(false);
-    alert(val);
+    setCurrentUser(val);
   };
 
   const listItem = JSON.parse(localStorage.getItem("users"));
@@ -18,12 +18,12 @@ const DropDownMenu = () => {
   return (
     <div style={styles.dropDownMenu}>
       <div onClick={() => toggleList()} style={styles.menuButton}>
-        men
+        {`${currentUser.name}`}
       </div>
       {listOpen && (
         <div style={styles.menuBox}>
           {listItem.map((user) => (
-            <div onClick={() => handleClickMenu(user.id)} key={user.id}>
+            <div onClick={() => handleClickMenu(user)} key={user.id}>
               {`${user.name}`}
             </div>
           ))}

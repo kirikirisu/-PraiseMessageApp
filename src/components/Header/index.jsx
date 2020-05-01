@@ -1,8 +1,16 @@
-import React from "react";
-import Dropdown from "../DropDown";
+import React, { Fragment } from "react";
+import Dropdown from "./DropDown";
+import Icon from "./Icon";
+import ClapPoints from "./ClapPoints";
 
-const Header = () => {
-  return <Dropdown />;
+const Header = ({ currentUser, setCurrentUser }) => {
+  return (
+    <Fragment>
+      <Icon currentUser={currentUser} />
+      <Dropdown currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      <ClapPoints currentUser={currentUser} />
+    </Fragment>
+  );
 };
 
 export default Header;
