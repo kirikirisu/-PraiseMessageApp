@@ -45,7 +45,7 @@ const styles = {
     position: "absolute",
     top: "23px",
     width: "120px",
-    zIndex: 1,
+    zIndex: 4,
     cursor: "pointer",
     border: "1px solid black",
   },

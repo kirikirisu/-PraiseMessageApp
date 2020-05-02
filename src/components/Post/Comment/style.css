@@ -1,0 +1,14 @@
+.formContainer{
+  position: absolute;
+  left: 30vh;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20vh;
+  width: 60vw;
+  padding: 5px;
+}
+
+.input {
+  height: 80%;
+  width: 80%;
+}

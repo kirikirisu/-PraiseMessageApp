@@ -11,12 +11,12 @@ const Header = ({ currentUser, setCurrentUser }) => {
   return (
     <div className="headerContainer">
       <div className="iconDropdown">
-        <Icon icon={currentUser.icon} />
         <Dropdown
           user={currentUser}
           setUser={setCurrentUser}
           listItem={listItem}
         />
+        <Icon icon={currentUser.icon} />
       </div>
       <ClapPoints currentUser={currentUser} />
     </div>
