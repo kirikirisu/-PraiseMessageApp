@@ -1,15 +1,27 @@
 import React, { useState } from "react";
 import "./style.css";
 
-const Coment = () => {
+const Comment = ({ currentUser, introduceUser, setPosts, posts }) => {
   const [inputValue, setInputValue] = useState("");
 
-  const handleSubmit = () => {
-    alert(`${inputValue}`);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const postInfor = {
+      createdAt: new Date(),
+      introduceUser: currentUser.name,
+      introducedUser: introduceUser.name,
+      comment: inputValue,
+      clapInfor: [],
+    };
+    // console.log(postInfor);
+    setPosts([...posts, postInfor]);
+    setInputValue("");
+    // localStorage.setItem("posts", JSON.stringify(postInfor));
   };
 
   return (
-    <form className="formContainer" onSubmit={() => handleSubmit()}>
+    <form className="formContainer" onSubmit={(e) => handleSubmit(e)}>
       <input
         className="input"
         type="text"
@@ -21,4 +33,4 @@ const Coment = () => {
   );
 };
 
-export default Coment;
+export default Comment;

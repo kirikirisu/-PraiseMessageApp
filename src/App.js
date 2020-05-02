@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Header from "./components/Header";
 import Post from "./components/Post";
 import initialUsers from "./utils/initialUsers";
@@ -8,6 +8,7 @@ const App = () => {
 
   const [currentUser, setCurrentUser] = useState({});
   const [introduceUser, setIntroduceUser] = useState({});
+  const [posts, setPosts] = useState([]);
 
   const setInitialUsers = () => {
     // https://teratail.com/questions/74962
@@ -25,9 +26,27 @@ const App = () => {
     }
   };
 
+  const setInitialPosts = () => {
+    const prevPosts = localStorage.getItem("posts");
+
+    if (prevPosts) {
+      setPosts(JSON.parse(prevPosts));
+    }
+  };
+
+  const upDatePosts = useCallback(() => {
+    localStorage.setItem("posts", JSON.stringify(posts));
+  }, [posts]);
+
   useEffect(() => {
     setInitialUsers();
+    setInitialPosts();
   }, []);
+
+  // 投稿した時に起動する
+  useEffect(() => {
+    upDatePosts();
+  }, [posts, upDatePosts]);
 
   return (
     <div>
@@ -36,6 +55,8 @@ const App = () => {
         introduceUser={introduceUser}
         setIntroduceUser={setIntroduceUser}
         currentUser={currentUser}
+        setPosts={setPosts}
+        posts={posts}
       />
     </div>
   );

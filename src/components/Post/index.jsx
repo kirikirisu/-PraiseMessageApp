@@ -19,7 +19,13 @@ const createPostItem = (
   }
 };
 
-const Post = ({ introduceUser, setIntroduceUser, currentUser }) => {
+const Post = ({
+  introduceUser,
+  setIntroduceUser,
+  currentUser,
+  setPosts,
+  posts,
+}) => {
   const [listItem, setListItem] = useState([]);
   // console.log(introduceUser);
   useEffect(() => {
@@ -34,7 +40,12 @@ const Post = ({ introduceUser, setIntroduceUser, currentUser }) => {
         setUser={setIntroduceUser}
         listItem={listItem}
       />
-      <Comment />
+      <Comment
+        currentUser={currentUser}
+        introduceUser={introduceUser}
+        setPosts={setPosts}
+        posts={posts}
+      />
     </div>
   );
 };
