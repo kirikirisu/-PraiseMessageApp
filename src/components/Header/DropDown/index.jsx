@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const DropDownMenu = ({ currentUser, setCurrentUser }) => {
+const DropDownMenu = ({ user, setUser, listItem }) => {
   const [listOpen, setListOpen] = useState(false);
 
   const toggleList = () => {
@@ -9,16 +9,13 @@ const DropDownMenu = ({ currentUser, setCurrentUser }) => {
 
   const handleClickMenu = (val) => {
     setListOpen(false);
-    setCurrentUser(val);
+    setUser(val);
   };
-
-  const listItem = JSON.parse(localStorage.getItem("users"));
-  // console.log(listItem);
 
   return (
     <div style={styles.dropDownMenu}>
       <div onClick={() => toggleList()} style={styles.menuButton}>
-        {`${currentUser.name}`}
+        {`${user.name}`}
       </div>
       {listOpen && (
         <div style={styles.menuBox}>
