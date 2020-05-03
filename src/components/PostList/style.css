@@ -1,0 +1,21 @@
+.icons {
+  display: flex;
+  flex-direction: row;
+}
+
+.comment {
+  margin-left: 5vh;
+}
+
+.commentDate {
+  display: flex;
+  flex-direction: row;
+  padding: 0 10vh;
+  justify-content: space-between;
+}
+
+.itemContainer {
+  background-color: dimgray;
+  margin: 5px;
+  padding: 5px;
+}

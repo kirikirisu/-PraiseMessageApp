@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import Header from "./components/Header";
 import Post from "./components/Post";
+import PostList from "./components/PostList";
 import initialUsers from "./utils/initialUsers";
 
 const App = () => {
@@ -43,7 +44,7 @@ const App = () => {
     setInitialPosts();
   }, []);
 
-  // 投稿した時に起動する
+  // 投稿した時に起動
   useEffect(() => {
     upDatePosts();
   }, [posts, upDatePosts]);
@@ -58,6 +59,7 @@ const App = () => {
         setPosts={setPosts}
         posts={posts}
       />
+      <PostList posts={posts} />
     </div>
   );
 };

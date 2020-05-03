@@ -9,15 +9,14 @@ const Comment = ({ currentUser, introduceUser, setPosts, posts }) => {
 
     const postInfor = {
       createdAt: new Date(),
-      introduceUser: currentUser.name,
-      introducedUser: introduceUser.name,
+      introduceUser: currentUser.id,
+      introducedUser: introduceUser.id,
       comment: inputValue,
       clapInfor: [],
     };
     // console.log(postInfor);
     setPosts([...posts, postInfor]);
     setInputValue("");
-    // localStorage.setItem("posts", JSON.stringify(postInfor));
   };
 
   return (
