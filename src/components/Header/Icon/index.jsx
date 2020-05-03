@@ -1,9 +1,9 @@
 import React from "react";
 import "./style.css";
 
-const Icon = ({ currentUser }) => (
+const Icon = ({ icon }) => (
   <div className="iconContainer">
-    <img className="icon" src={currentUser.icon} alt="icon" />
+    <img className="icon" src={icon} alt="icon" />
   </div>
 );
 

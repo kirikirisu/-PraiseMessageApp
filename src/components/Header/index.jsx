@@ -1,15 +1,22 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Dropdown from "./DropDown";
 import Icon from "./Icon";
 import ClapPoints from "./ClapPoints";
 import "./style.css";
 
 const Header = ({ currentUser, setCurrentUser }) => {
+  const listItem = JSON.parse(localStorage.getItem("users"));
+
+  // console.log(listItem);
   return (
     <div className="headerContainer">
       <div className="iconDropdown">
-        <Icon currentUser={currentUser} />
-        <Dropdown currentUser={currentUser} setCurrentUser={setCurrentUser} />
+        <Dropdown
+          user={currentUser}
+          setUser={setCurrentUser}
+          listItem={listItem}
+        />
+        <Icon icon={currentUser.icon} />
       </div>
       <ClapPoints currentUser={currentUser} />
     </div>

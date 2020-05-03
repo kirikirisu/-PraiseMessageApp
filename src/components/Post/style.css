@@ -1,0 +1,7 @@
+.postContainer {
+  width: 100vw;
+  background-color: darkgrey;
+  padding: 5px;
+  position: relative;
+  z-index: 1;
+}
