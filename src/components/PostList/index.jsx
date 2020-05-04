@@ -29,7 +29,26 @@ const PostList = ({ posts, users, currnetUser }) => {
     if (currnetUser.id === introduceId || currnetUser.id === introducedId) {
       alert("紹介した人/された人は拍手できません");
     } else {
-      console.log("newUsers保存");
+      const newUsers = users.map((user) => {
+        if (user.id === currnetUser.id) {
+          user.clapPt -= 2;
+          return user;
+        }
+
+        if (user.id === introduceId) {
+          user.clapedPt += 1;
+          return user;
+        }
+
+        if (user.id === introducedId) {
+          user.clapedPt += 1;
+          return user;
+        }
+
+        return user;
+      });
+
+      console.log(newUsers);
     }
   };
 
