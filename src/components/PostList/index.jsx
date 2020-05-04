@@ -15,12 +15,12 @@ const formatDate = (date, format) => {
   return format;
 };
 
-const PostList = ({ posts, users, currnetUser, setUsers }) => {
+const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
   const ascPosts = [...posts].sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
 
-  const hundleClap = (introduceUser, introducedUser) => {
+  const hundleClap = (introduceUser, introducedUser, post) => {
     console.log("click!");
     const introduceId = introduceUser[0].id;
     const introducedId = introducedUser[0].id;
@@ -29,6 +29,7 @@ const PostList = ({ posts, users, currnetUser, setUsers }) => {
     if (currnetUser.id === introduceId || currnetUser.id === introducedId) {
       alert("紹介した人/された人は拍手できません");
     } else {
+      // ユーザー情報の更新
       const newUsers = users.map((user) => {
         if (user.id === currnetUser.id) {
           user.clapPt -= 2;
@@ -48,8 +49,19 @@ const PostList = ({ posts, users, currnetUser, setUsers }) => {
         return user;
       });
 
-      // console.log(newUsers);
       setUsers(newUsers);
+
+      // 投稿情報の更新
+      const newPosts = posts.map((pst) => {
+        if (post.createdAt === pst.createdAt) {
+          pst.clapInfor = pst.clapInfor.concat(currnetUser.id);
+          return pst;
+        }
+        return pst;
+      });
+
+      console.log(newPosts);
+      setPosts(newPosts);
     }
   };
 
@@ -75,7 +87,7 @@ const PostList = ({ posts, users, currnetUser, setUsers }) => {
                 <div className="commentDate">
                   <button
                     onClick={() =>
-                      hundleClap(introduceUserData, introducedUserData)
+                      hundleClap(introduceUserData, introducedUserData, post)
                     }
                   >
                     拍手

@@ -83,6 +83,7 @@ const App = () => {
         users={users}
         currnetUser={currentUser}
         setUsers={setUsers}
+        setPosts={setPosts}
       />
     </div>
   );
