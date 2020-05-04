@@ -45,6 +45,10 @@ const App = () => {
     localStorage.setItem("posts", JSON.stringify(posts));
   }, [posts]);
 
+  const upDateUsers = useCallback(() => {
+    localStorage.setItem("users", JSON.stringify(users));
+  }, [users]);
+
   useEffect(() => {
     setInitialUsers();
     setInitialPosts();
@@ -54,6 +58,10 @@ const App = () => {
   useEffect(() => {
     upDatePosts();
   }, [posts, upDatePosts]);
+
+  useEffect(() => {
+    upDateUsers();
+  }, [upDateUsers, users]);
 
   return (
     <div>
@@ -70,7 +78,12 @@ const App = () => {
         posts={posts}
         users={users}
       />
-      <PostList posts={posts} users={users} currnetUser={currentUser} />
+      <PostList
+        posts={posts}
+        users={users}
+        currnetUser={currentUser}
+        setUsers={setUsers}
+      />
     </div>
   );
 };

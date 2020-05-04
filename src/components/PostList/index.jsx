@@ -15,7 +15,7 @@ const formatDate = (date, format) => {
   return format;
 };
 
-const PostList = ({ posts, users, currnetUser }) => {
+const PostList = ({ posts, users, currnetUser, setUsers }) => {
   const ascPosts = [...posts].sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
@@ -48,7 +48,8 @@ const PostList = ({ posts, users, currnetUser }) => {
         return user;
       });
 
-      console.log(newUsers);
+      // console.log(newUsers);
+      setUsers(newUsers);
     }
   };
 
