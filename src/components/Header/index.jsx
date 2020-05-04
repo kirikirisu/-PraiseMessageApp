@@ -4,8 +4,8 @@ import Icon from "./Icon";
 import ClapPoints from "./ClapPoints";
 import "./style.css";
 
-const Header = ({ currentUser, setCurrentUser }) => {
-  const listItem = JSON.parse(localStorage.getItem("users"));
+const Header = ({ currentUser, setCurrentUser, users }) => {
+  // const listItem = JSON.parse(localStorage.getItem("users"));
 
   // console.log(listItem);
   return (
@@ -14,7 +14,7 @@ const Header = ({ currentUser, setCurrentUser }) => {
         <Dropdown
           user={currentUser}
           setUser={setCurrentUser}
-          listItem={listItem}
+          listItem={users}
         />
         <Icon icon={currentUser.icon} />
       </div>

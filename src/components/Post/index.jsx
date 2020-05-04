@@ -9,9 +9,9 @@ const createPostItem = (
   currentUser,
   callback,
   introduceUser,
-  setIntroduceUser
+  setIntroduceUser,
+  users
 ) => {
-  const users = JSON.parse(localStorage.getItem("users"));
   const item = users.filter((user) => user.name !== currentUser.name);
   callback(item);
   if (currentUser.name === introduceUser.name) {
@@ -25,12 +25,21 @@ const Post = ({
   currentUser,
   setPosts,
   posts,
+  users,
 }) => {
   const [listItem, setListItem] = useState([]);
   // console.log(introduceUser);
   useEffect(() => {
-    createPostItem(currentUser, setListItem, introduceUser, setIntroduceUser);
-  }, [currentUser, introduceUser, setIntroduceUser]);
+    if (users) {
+      createPostItem(
+        currentUser,
+        setListItem,
+        introduceUser,
+        setIntroduceUser,
+        users
+      );
+    }
+  }, [currentUser, introduceUser, setIntroduceUser, users]);
 
   return (
     <div className="postContainer">

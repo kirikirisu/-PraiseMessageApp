@@ -9,6 +9,8 @@ const App = () => {
 
   const [currentUser, setCurrentUser] = useState({});
   const [introduceUser, setIntroduceUser] = useState({});
+
+  const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
 
   const setInitialUsers = () => {
@@ -19,11 +21,15 @@ const App = () => {
       localStorage.setItem("users", JSON.stringify(initialUsers));
       setCurrentUser(initialUsers[0]);
       setIntroduceUser(initialUsers[1]);
+
+      setUsers(initialUsers);
     } else if (prevUsers) {
       const parsed = JSON.parse(prevUsers);
       // console.log(parsed[0]);
       setCurrentUser(parsed[0]);
       setIntroduceUser(parsed[1]);
+
+      setUsers(parsed);
     }
   };
 
@@ -51,15 +57,20 @@ const App = () => {
 
   return (
     <div>
-      <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      <Header
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+        users={users}
+      />
       <Post
         introduceUser={introduceUser}
         setIntroduceUser={setIntroduceUser}
         currentUser={currentUser}
         setPosts={setPosts}
         posts={posts}
+        users={users}
       />
-      <PostList posts={posts} />
+      <PostList posts={posts} users={users} currnetUser={currentUser} />
     </div>
   );
 };
