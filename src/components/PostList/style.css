@@ -1,3 +1,9 @@
+.itemContainer {
+  background-color: gainsboro;
+  margin: 5px;
+  padding: 5px;
+}
+
 .icons {
   display: flex;
   flex-direction: row;
@@ -7,15 +13,32 @@
   margin-left: 5vh;
 }
 
-.commentDate {
+.clapDate {
   display: flex;
   flex-direction: row;
   padding: 0 10vh;
   justify-content: space-between;
 }
 
-.itemContainer {
-  background-color: gainsboro;
-  margin: 5px;
-  padding: 5px;
+.clap {
+  display: flex;
+  flex-direction: row;
+}
+
+.clapButton {
+  margin-right: 10px;
+}
+
+.clapCounts {
+  margin: 0;
+}
+
+.clapDetails {
+  display: none;
+  width: 20px;
+  height: 20px;
+}
+
+.clapCounts:hover + .clapDetails{
+  display: block;
 }

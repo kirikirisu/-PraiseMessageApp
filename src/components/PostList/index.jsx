@@ -21,10 +21,9 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
   );
 
   const hundleClap = (introduceUser, introducedUser, post) => {
-    console.log("click!");
     const introduceId = introduceUser[0].id;
     const introducedId = introducedUser[0].id;
-    console.log(currnetUser.id, introduceId, introducedId);
+    // console.log(currnetUser.id, introduceId, introducedId);
 
     if (currnetUser.id === introduceId || currnetUser.id === introducedId) {
       alert("紹介した人/された人は拍手できません");
@@ -60,7 +59,7 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
         return pst;
       });
 
-      console.log(newPosts);
+      // console.log(newPosts);
       setPosts(newPosts);
     }
   };
@@ -76,6 +75,21 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
             const introducedUserData = users.filter(
               (user) => user.id === post.introducedUser
             );
+
+            const totalClapCount = post.clapInfor.length;
+
+            const clapDetails = {};
+            post.clapInfor.map((key) => {
+              const clapUser = users.filter((user) => user.id === key);
+              clapDetails[`${clapUser[0].name}`] = clapDetails[
+                `${clapUser[0].name}`
+              ]
+                ? clapDetails[`${clapUser[0].name}`] + 1
+                : 1;
+            });
+
+            console.log(clapDetails);
+
             return (
               <div key={post.createdAt} className="itemContainer">
                 <div className="icons">
@@ -84,14 +98,21 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
                   <Icon icon={introducedUserData[0].icon} />
                 </div>
                 <div className="comment">{`${post.comment}`}</div>
-                <div className="commentDate">
-                  <button
-                    onClick={() =>
-                      hundleClap(introduceUserData, introducedUserData, post)
-                    }
-                  >
-                    拍手
-                  </button>
+                <div className="clapDate">
+                  <div className="clap">
+                    <button
+                      className="clapButton"
+                      onClick={() =>
+                        hundleClap(introduceUserData, introducedUserData, post)
+                      }
+                    >
+                      拍手
+                    </button>
+                    <div>
+                      <div className="clapCounts">{`${totalClapCount}`}</div>
+                      <div className="clapDetails">hoge</div>
+                    </div>
+                  </div>
                   <div>
                     {formatDate(new Date(post.createdAt), "YYYY/MM/DD HH:SS")}
                   </div>

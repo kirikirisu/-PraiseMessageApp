@@ -54,7 +54,6 @@ const App = () => {
     setInitialPosts();
   }, []);
 
-  // 投稿した時に起動
   useEffect(() => {
     upDatePosts();
   }, [posts, upDatePosts]);
