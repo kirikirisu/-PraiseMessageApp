@@ -99,7 +99,7 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
                 </div>
                 <div className="comment">{`${post.comment}`}</div>
                 <div className="clapDate">
-                  <div className="clap">
+                  <div className="clapContainer">
                     <button
                       className="clapButton"
                       onClick={() =>
@@ -108,9 +108,14 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
                     >
                       拍手
                     </button>
-                    <div>
+                    <div className="clapDetails">
                       <div className="clapCounts">{`${totalClapCount}`}</div>
-                      <div className="clapDetails">hoge</div>
+                      <div className="clapUser">
+                        {clapDetails &&
+                          Object.keys(clapDetails).map((key) => (
+                            <div>{`${key}: ${clapDetails[key]}`}</div>
+                          ))}
+                      </div>
                     </div>
                   </div>
                   <div>

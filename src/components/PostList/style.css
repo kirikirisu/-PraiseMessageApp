@@ -16,11 +16,12 @@
 .clapDate {
   display: flex;
   flex-direction: row;
-  padding: 0 10vh;
+  padding: 5px 10vh;
   justify-content: space-between;
+
 }
 
-.clap {
+.clapContainer {
   display: flex;
   flex-direction: row;
 }
@@ -29,16 +30,27 @@
   margin-right: 10px;
 }
 
+.clapDetails {
+  position: relative;
+}
+
 .clapCounts {
   margin: 0;
 }
 
-.clapDetails {
+.clapUser {
   display: none;
-  width: 20px;
-  height: 20px;
+  position: absolute;
+  background-color: wheat;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+  text-align: center;
+  width: auto;
+  padding: 5px 10px;
+  white-space: nowrap;
 }
 
-.clapCounts:hover + .clapDetails{
+.clapCounts:hover + .clapUser{
   display: block;
 }
