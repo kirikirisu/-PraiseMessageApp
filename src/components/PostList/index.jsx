@@ -88,7 +88,7 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
                 : 1;
             });
 
-            console.log(clapDetails);
+            // console.log(clapDetails);
 
             return (
               <div key={post.createdAt} className="itemContainer">
@@ -113,7 +113,7 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
                       <div className="clapUser">
                         {clapDetails &&
                           Object.keys(clapDetails).map((key) => (
-                            <div>{`${key}: ${clapDetails[key]}`}</div>
+                            <div key={key}>{`${key}: ${clapDetails[key]}`}</div>
                           ))}
                       </div>
                     </div>

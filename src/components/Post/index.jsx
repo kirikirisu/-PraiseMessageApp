@@ -5,7 +5,7 @@ import Comment from "./Comment";
 import "./style.css";
 
 // https://stackoverflow.com/questions/57853288/react-warning-maximum-update-depth-exceeded
-const createPostItem = (
+const createPostUsers = (
   currentUser,
   callback,
   introduceUser,
@@ -31,7 +31,7 @@ const Post = ({
   // console.log(introduceUser);
   useEffect(() => {
     if (users) {
-      createPostItem(
+      createPostUsers(
         currentUser,
         setListItem,
         introduceUser,
@@ -43,18 +43,22 @@ const Post = ({
 
   return (
     <div className="postContainer">
-      <Icon icon={introduceUser.icon} />
-      <Dropdown
-        user={introduceUser}
-        setUser={setIntroduceUser}
-        listItem={listItem}
-      />
-      <Comment
-        currentUser={currentUser}
-        introduceUser={introduceUser}
-        setPosts={setPosts}
-        posts={posts}
-      />
+      <div className="postDropdown">
+        <Icon icon={introduceUser.icon} />
+        <Dropdown
+          user={introduceUser}
+          setUser={setIntroduceUser}
+          listItem={listItem}
+        />
+      </div>
+      <div>
+        <Comment
+          currentUser={currentUser}
+          introduceUser={introduceUser}
+          setPosts={setPosts}
+          posts={posts}
+        />
+      </div>
     </div>
   );
 };
