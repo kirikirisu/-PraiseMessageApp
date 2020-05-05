@@ -1,7 +1,19 @@
+.postListContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 83vw;
+  height: 60vh;
+  overflow: scroll;
+  border: solid 1px black;
+}
+
 .itemContainer {
   background-color: gainsboro;
   margin: 5px;
   padding: 5px;
+  width: 80vw;
 }
 
 .icons {

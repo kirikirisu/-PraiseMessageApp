@@ -65,7 +65,7 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
   };
 
   return (
-    <div>
+    <div className="postListContainer">
       {[
         posts &&
           ascPosts.map((post) => {

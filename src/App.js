@@ -63,7 +63,7 @@ const App = () => {
   }, [upDateUsers, users]);
 
   return (
-    <div>
+    <div className="app">
       <Header
         currentUser={currentUser}
         setCurrentUser={setCurrentUser}
