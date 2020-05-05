@@ -1,0 +1,68 @@
+.postListContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 83vw;
+  height: 60vh;
+  overflow: scroll;
+  border: solid 1px black;
+}
+
+.itemContainer {
+  background-color: gainsboro;
+  margin: 5px;
+  padding: 5px;
+  width: 80vw;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+}
+
+.comment {
+  margin-left: 5vh;
+}
+
+.clapDate {
+  display: flex;
+  flex-direction: row;
+  padding: 5px 10vh;
+  justify-content: space-between;
+
+}
+
+.clapContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.clapButton {
+  margin-right: 10px;
+}
+
+.clapDetails {
+  position: relative;
+}
+
+.clapCounts {
+  margin: 0;
+}
+
+.clapUser {
+  display: none;
+  position: absolute;
+  background-color: wheat;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+  text-align: center;
+  width: auto;
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+
+.clapCounts:hover + .clapUser{
+  display: block;
+}

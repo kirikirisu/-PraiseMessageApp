@@ -1,17 +1,11 @@
 .pointsContainer {
-  float: left;
-  position: absolute;
-  top: 50%;
-  left: 30%;
-  transform: translateY(-50%);
+  display: flex;
 }
 
 .clap{
-  float: left;
-  margin: 0px 15vh;
+  margin-right: 20px;
 }
 
 .claped{
-  float: left;
-  margin: 0px 15vh;
+  margin-left: 20px;
 }

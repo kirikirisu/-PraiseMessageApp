@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import Header from "./components/Header";
 import Post from "./components/Post";
+import PostList from "./components/PostList";
 import initialUsers from "./utils/initialUsers";
 
 const App = () => {
@@ -8,6 +9,8 @@ const App = () => {
 
   const [currentUser, setCurrentUser] = useState({});
   const [introduceUser, setIntroduceUser] = useState({});
+
+  const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
 
   const setInitialUsers = () => {
@@ -18,11 +21,15 @@ const App = () => {
       localStorage.setItem("users", JSON.stringify(initialUsers));
       setCurrentUser(initialUsers[0]);
       setIntroduceUser(initialUsers[1]);
+
+      setUsers(initialUsers);
     } else if (prevUsers) {
       const parsed = JSON.parse(prevUsers);
       // console.log(parsed[0]);
       setCurrentUser(parsed[0]);
       setIntroduceUser(parsed[1]);
+
+      setUsers(parsed);
     }
   };
 
@@ -38,25 +45,44 @@ const App = () => {
     localStorage.setItem("posts", JSON.stringify(posts));
   }, [posts]);
 
+  const upDateUsers = useCallback(() => {
+    localStorage.setItem("users", JSON.stringify(users));
+  }, [users]);
+
   useEffect(() => {
     setInitialUsers();
     setInitialPosts();
   }, []);
 
-  // 投稿した時に起動する
   useEffect(() => {
     upDatePosts();
   }, [posts, upDatePosts]);
 
+  useEffect(() => {
+    upDateUsers();
+  }, [upDateUsers, users]);
+
   return (
-    <div>
-      <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
+    <div className="app">
+      <Header
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+        users={users}
+      />
       <Post
         introduceUser={introduceUser}
         setIntroduceUser={setIntroduceUser}
         currentUser={currentUser}
         setPosts={setPosts}
         posts={posts}
+        users={users}
+      />
+      <PostList
+        posts={posts}
+        users={users}
+        currnetUser={currentUser}
+        setUsers={setUsers}
+        setPosts={setPosts}
       />
     </div>
   );
