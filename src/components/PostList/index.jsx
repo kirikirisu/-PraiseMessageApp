@@ -20,13 +20,18 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
 
-  const hundleClap = (introduceUser, introducedUser, post) => {
+  const hundleClap = (introduceUser, introducedUser, post, clapDetails) => {
     const introduceId = introduceUser[0].id;
     const introducedId = introducedUser[0].id;
-    // console.log(currnetUser.id, introduceId, introducedId);
+    const userClapCount = clapDetails[`${currnetUser.name}`]
+      ? clapDetails[`${currnetUser.name}`]
+      : 0;
+    console.log(userClapCount);
 
     if (currnetUser.id === introduceId || currnetUser.id === introducedId) {
       alert("紹介した人/された人は拍手できません");
+    } else if (userClapCount >= 15) {
+      alert("同じ投稿に拍手できるのは15回までです");
     } else {
       // ユーザー情報の更新
       const newUsers = users.map((user) => {
@@ -59,7 +64,6 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
         return pst;
       });
 
-      // console.log(newPosts);
       setPosts(newPosts);
     }
   };
@@ -79,16 +83,15 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
             const totalClapCount = post.clapInfor.length;
 
             const clapDetails = {};
-            post.clapInfor.map((key) => {
+            post.clapInfor.forEach((key) => {
               const clapUser = users.filter((user) => user.id === key);
+
               clapDetails[`${clapUser[0].name}`] = clapDetails[
                 `${clapUser[0].name}`
               ]
                 ? clapDetails[`${clapUser[0].name}`] + 1
                 : 1;
             });
-
-            // console.log(clapDetails);
 
             return (
               <div key={post.createdAt} className="itemContainer">
@@ -103,7 +106,12 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
                     <button
                       className="clapButton"
                       onClick={() =>
-                        hundleClap(introduceUserData, introducedUserData, post)
+                        hundleClap(
+                          introduceUserData,
+                          introducedUserData,
+                          post,
+                          clapDetails
+                        )
                       }
                     >
                       拍手
