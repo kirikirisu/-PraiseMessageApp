@@ -26,12 +26,12 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
     const userClapCount = clapDetails[`${currnetUser.name}`]
       ? clapDetails[`${currnetUser.name}`]
       : 0;
-    console.log(userClapCount);
+    const userClapPoint = currnetUser.clapPt;
 
     if (currnetUser.id === introduceId || currnetUser.id === introducedId) {
       alert("紹介した人/された人は拍手できません");
-    } else if (userClapCount >= 15) {
-      alert("同じ投稿に拍手できるのは15回までです");
+    } else if (userClapCount >= 15 || userClapPoint === 0) {
+      alert("拍手できません");
     } else {
       // ユーザー情報の更新
       const newUsers = users.map((user) => {

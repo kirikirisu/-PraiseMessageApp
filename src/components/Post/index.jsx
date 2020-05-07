@@ -28,7 +28,6 @@ const Post = ({
   users,
 }) => {
   const [listItem, setListItem] = useState([]);
-  // console.log(introduceUser);
   useEffect(() => {
     if (users) {
       createPostUsers(
