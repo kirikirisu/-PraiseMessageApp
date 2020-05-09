@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 
-const DropDownMenu = ({ user, setUser, listItem }) => {
+const DropDownMenu = memo(({ user, setUser, listItem }) => {
   const [listOpen, setListOpen] = useState(false);
 
   const toggleList = () => {
@@ -28,7 +28,7 @@ const DropDownMenu = ({ user, setUser, listItem }) => {
       )}
     </div>
   );
-};
+});
 
 const styles = {
   dropDownMenu: {

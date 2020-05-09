@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import Icon from "../Header/Icon";
 import Dropdown from "../Header/DropDown";
 import Comment from "./Comment";
@@ -19,47 +19,49 @@ const createPostUsers = (
   }
 };
 
-const Post = ({
-  introduceUser,
-  setIntroduceUser,
-  currentUser,
-  setPosts,
-  posts,
-  users,
-}) => {
-  const [listItem, setListItem] = useState([]);
-  useEffect(() => {
-    if (users) {
-      createPostUsers(
-        currentUser,
-        setListItem,
-        introduceUser,
-        setIntroduceUser,
-        users
-      );
-    }
-  }, [currentUser, introduceUser, setIntroduceUser, users]);
+const Post = memo(
+  ({
+    introduceUser,
+    setIntroduceUser,
+    currentUser,
+    setPosts,
+    posts,
+    users,
+  }) => {
+    const [listItem, setListItem] = useState([]);
+    useEffect(() => {
+      if (users) {
+        createPostUsers(
+          currentUser,
+          setListItem,
+          introduceUser,
+          setIntroduceUser,
+          users
+        );
+      }
+    }, [currentUser, introduceUser, setIntroduceUser, users]);
 
-  return (
-    <div className="postContainer">
-      <div className="postDropdown">
-        <Icon icon={introduceUser.icon} />
-        <Dropdown
-          user={introduceUser}
-          setUser={setIntroduceUser}
-          listItem={listItem}
-        />
+    return (
+      <div className="postContainer">
+        <div className="postDropdown">
+          <Icon icon={introduceUser.icon} />
+          <Dropdown
+            user={introduceUser}
+            setUser={setIntroduceUser}
+            listItem={listItem}
+          />
+        </div>
+        <div>
+          <Comment
+            currentUser={currentUser}
+            introduceUser={introduceUser}
+            setPosts={setPosts}
+            posts={posts}
+          />
+        </div>
       </div>
-      <div>
-        <Comment
-          currentUser={currentUser}
-          introduceUser={introduceUser}
-          setPosts={setPosts}
-          posts={posts}
-        />
-      </div>
-    </div>
-  );
-};
+    );
+  }
+);
 
 export default Post;

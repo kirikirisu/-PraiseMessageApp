@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, memo } from "react";
 import "./style.css";
 
-const Comment = ({ currentUser, introduceUser, setPosts, posts }) => {
+const Comment = memo(({ currentUser, introduceUser, setPosts, posts }) => {
   const [inputValue, setInputValue] = useState("");
   const [isNotExist, setIsNotExist] = useState(true);
 
@@ -53,6 +53,6 @@ const Comment = ({ currentUser, introduceUser, setPosts, posts }) => {
       />
     </form>
   );
-};
+});
 
 export default Comment;

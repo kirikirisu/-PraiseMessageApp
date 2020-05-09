@@ -1,10 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import Dropdown from "./DropDown";
 import Icon from "./Icon";
 import ClapPoints from "./ClapPoints";
 import "./style.css";
 
-const Header = ({ currentUser, setCurrentUser, users }) => (
+const Header = memo(({ currentUser, setCurrentUser, users }) => (
   <div className="headerContainer">
     <div className="iconDropdown">
       <Dropdown user={currentUser} setUser={setCurrentUser} listItem={users} />
@@ -14,6 +14,6 @@ const Header = ({ currentUser, setCurrentUser, users }) => (
       <ClapPoints currentUser={currentUser} />
     </div>
   </div>
-);
+));
 
 export default Header;
