@@ -1,19 +1,10 @@
 import React from "react";
 import Icon from "../Header/Icon";
+import { formatDate, sortObject } from "./methods";
 import "./style.css";
 
 const arrowImg =
   "https://frame-illust.com/fi/wp-content/uploads/2018/03/yajirushi-tegaki-03.png";
-
-const formatDate = (date, format) => {
-  format = format.replace(/YYYY/, date.getFullYear());
-  format = format.replace(/MM/, date.getMonth() + 1);
-  format = format.replace(/DD/, date.getDate());
-  format = format.replace(/HH/, date.getHours());
-  format = format.replace(/SS/, date.getMinutes());
-
-  return format;
-};
 
 const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
   const ascPosts = [...posts].sort(
@@ -23,15 +14,15 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
   const hundleClap = (introduceUser, introducedUser, post, clapDetails) => {
     const introduceId = introduceUser[0].id;
     const introducedId = introducedUser[0].id;
-    const userClapCount = clapDetails[`${currnetUser.name}`]
-      ? clapDetails[`${currnetUser.name}`]
+    const userClapCount = clapDetails[currnetUser.name]
+      ? clapDetails[currnetUser.name]
       : 0;
     const userClapPoint = currnetUser.clapPt;
 
     if (currnetUser.id === introduceId || currnetUser.id === introducedId) {
       alert("紹介した人/された人は拍手できません");
     } else if (userClapCount >= 15 || userClapPoint === 0) {
-      alert("拍手できません");
+      alert("これ以上拍手できません");
     } else {
       // ユーザー情報の更新
       const newUsers = users.map((user) => {
@@ -86,12 +77,13 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
             post.clapInfor.forEach((key) => {
               const clapUser = users.filter((user) => user.id === key);
 
-              clapDetails[`${clapUser[0].name}`] = clapDetails[
-                `${clapUser[0].name}`
-              ]
-                ? clapDetails[`${clapUser[0].name}`] + 1
+              clapDetails[clapUser[0].name] = clapDetails[clapUser[0].name]
+                ? clapDetails[clapUser[0].name] + 1
                 : 1;
             });
+
+            const ascClapDetails = sortObject(clapDetails);
+            console.log(ascClapDetails);
 
             return (
               <div key={post.createdAt} className="itemContainer">
@@ -119,9 +111,11 @@ const PostList = ({ posts, users, currnetUser, setUsers, setPosts }) => {
                     <div className="clapDetails">
                       <div className="clapCounts">{`${totalClapCount}`}</div>
                       <div className="clapUser">
-                        {clapDetails &&
-                          Object.keys(clapDetails).map((key) => (
-                            <div key={key}>{`${key}: ${clapDetails[key]}`}</div>
+                        {ascClapDetails &&
+                          Object.keys(ascClapDetails).map((key) => (
+                            <div
+                              key={key}
+                            >{`${key}: ${ascClapDetails[key]}`}</div>
                           ))}
                       </div>
                     </div>
