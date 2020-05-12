@@ -1,4 +1,5 @@
 import React, { useState, memo } from "react";
+import "./style.css";
 
 const DropDownMenu = memo(({ user, setUser, listItem }) => {
   const [listOpen, setListOpen] = useState(false);
@@ -13,14 +14,14 @@ const DropDownMenu = memo(({ user, setUser, listItem }) => {
   };
 
   return (
-    <div style={styles.dropDownMenu}>
-      <div onClick={() => toggleList()} style={styles.menuButton}>
+    <div className="dropDownMenu">
+      <div onClick={() => toggleList()} className="dropDownButton">
         {`${user.name}`}
       </div>
       {listOpen && (
-        <div style={styles.menuBox}>
+        <div className="dropDownList">
           {listItem.map((user) => (
-            <div onClick={() => handleClickMenu(user)} key={user.id}>
+            <div onClick={() => handleClickMenu(user)} key={user.name}>
               {`${user.name}`}
             </div>
           ))}
@@ -29,33 +30,5 @@ const DropDownMenu = memo(({ user, setUser, listItem }) => {
     </div>
   );
 });
-
-const styles = {
-  dropDownMenu: {
-    position: "relative",
-    margin: 5,
-  },
-  menuButton: {
-    display: "inline",
-    cursor: "pointer",
-    border: "1px solid black",
-    padding: "3px 5px",
-  },
-  menuBox: {
-    position: "absolute",
-    top: "23px",
-    width: "120px",
-    zIndex: 4,
-    cursor: "pointer",
-    border: "1px solid black",
-  },
-  menuContent: {
-    padding: "3px 5px",
-    borderBottom: "1px solid black",
-  },
-  lastMenuContent: {
-    padding: "3px 5px",
-  },
-};
 
 export default DropDownMenu;

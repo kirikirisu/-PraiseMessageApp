@@ -6,6 +6,7 @@
   width: 83vw;
   height: 60vh;
   overflow: scroll;
+  padding-bottom: 30px;
 }
 
 .itemContainer {
@@ -22,6 +23,7 @@
 
 .comment {
   margin-left: 5vh;
+  padding: 5px;
 }
 
 .clapDate {
@@ -46,7 +48,11 @@
 }
 
 .clapCounts {
-  margin: 0;
+  padding: 3px;
+}
+
+.clapTitle {
+  padding-bottom: 5px;
 }
 
 .clapUser {
@@ -58,10 +64,10 @@
   margin: 0 auto;
   text-align: center;
   width: auto;
-  padding: 5px 10px;
+  padding: 15px;
   white-space: nowrap;
 }
 
 .clapCounts:hover + .clapUser{
-  display: block;
+  display: inline-block;
 }

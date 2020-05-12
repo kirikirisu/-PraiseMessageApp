@@ -114,6 +114,7 @@ const PostList = memo(
                       <div className="clapDetails">
                         <div className="clapCounts">{`${totalClapCount}`}</div>
                         <div className="clapUser">
+                          <div className="clapTitle">拍手一覧</div>
                           {ascClapDetails &&
                             Object.keys(ascClapDetails).map((key) => (
                               <div
