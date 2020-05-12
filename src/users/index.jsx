@@ -27,7 +27,15 @@ const initialUsers = [
     id: 4,
     name: "フリーザ",
     icon:
-      "https://4.bp.blogspot.com/-eDLar-FeZ6Q/VaMOHWznrOI/AAAAAAAAvic/MHSkHPvstPI/s800/boy_06.png",
+      "https://1.bp.blogspot.com/-3Z5HanrdGAc/VaMOJb0ay-I/AAAAAAAAvik/Ex7UNgK4gY8/s800/boy_09.png",
+    clapPt: 100,
+    clapedPt: 0,
+  },
+  {
+    id: 5,
+    name: "ブウ",
+    icon:
+      "https://2.bp.blogspot.com/-D_mv2QF9rCg/VaMOFUh9EhI/AAAAAAAAviM/7_m2W2hR1TY/s800/boy_03.png",
     clapPt: 100,
     clapedPt: 0,
   },

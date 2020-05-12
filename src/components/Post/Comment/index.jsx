@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback, memo } from "react";
 import "./style.css";
 
-const Comment = ({ currentUser, introduceUser, setPosts, posts }) => {
+const Comment = memo(({ currentUser, introduceUser, setPosts, posts }) => {
   const [inputValue, setInputValue] = useState("");
+  const [isNotExist, setIsNotExist] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputValue.trim().length);
 
     if (inputValue.trim().length < 5) {
       alert("投稿には５文字以上必要です");
@@ -23,6 +23,18 @@ const Comment = ({ currentUser, introduceUser, setPosts, posts }) => {
     }
   };
 
+  const judgText = useCallback(() => {
+    if (inputValue.trim().length >= 5) {
+      setIsNotExist(false);
+    } else {
+      setIsNotExist(true);
+    }
+  }, [inputValue]);
+
+  useEffect(() => {
+    judgText();
+  }, [inputValue, judgText]);
+
   return (
     <form className="formContainer" onSubmit={(e) => handleSubmit(e)}>
       <input
@@ -32,9 +44,15 @@ const Comment = ({ currentUser, introduceUser, setPosts, posts }) => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <input className="inputButton" type="submit" value="投稿" />
+      <input
+        style={{ cursor: isNotExist ? "not-allowed" : "pointer" }}
+        className="inputButton"
+        type="submit"
+        value="投稿"
+        disabled={isNotExist}
+      />
     </form>
   );
-};
+});
 
 export default Comment;

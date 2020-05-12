@@ -11,7 +11,10 @@
 }
 
 .inputButton {
-  background-color: yellowgreen;
+  background-color: lightyellow;
   margin: 5px;
+  padding: 1px;
+  height: 3vh;
   width: 10vh;
+  cursor: pointer;
 }
