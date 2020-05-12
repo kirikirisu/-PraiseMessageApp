@@ -1,10 +1,14 @@
 # 起動のための手順
-srcフォルダがあるディレクトリで以下のコマンドを実行
+srcフォルダがあるディレクトリで以下のコマンドを実行してください。
 
 ```
 yarn install
-
 yarn start
+
+or
+
+npm install 
+npm start
 ```
 
 # 自己採点
